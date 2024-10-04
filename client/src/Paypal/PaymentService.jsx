@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Replace useHistory with useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 function PaymentService() {
-  const navigate = useNavigate(); // Use navigate instead of history
+  const navigate = useNavigate(); 
 
   const handlePayment = async (e) => {
     e.preventDefault();

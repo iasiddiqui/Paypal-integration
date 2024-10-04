@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Switch replaced with Routes
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 import PaymentService from './Paypal/paymentService';
 import Success from './Success/Success';
 import Failed from './Failed/failed';
@@ -7,8 +7,8 @@ import Failed from './Failed/failed';
 function App() {
   return (
     <Router>
-      <Routes> {/* Use Routes instead of Switch */}
-        <Route path="/" element={<PaymentService />} /> {/* Use 'element' to render a component */}
+      <Routes> 
+        <Route path="/" element={<PaymentService />} /> 
         <Route path="/success" element={<Success />} />
         <Route path="/failed" element={<Failed />} />
       </Routes>
