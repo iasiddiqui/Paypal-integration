@@ -1,25 +1,18 @@
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Switch replaced with Routes
+import PaymentService from './Paypal/paymentService';
+import Success from './Success/Success';
+import Failed from './Failed/failed';
 
 function App() {
-  const handlePayment = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await axios.post('http://localhost:8000/payment'); // Use POST instead of GET
-
-      if (res && res.data) {
-        const approvalUrl = res.data.approvalUrl; // Adjust based on the backend response
-        window.location.href = approvalUrl; // Redirect to PayPal
-      }
-    } catch (error) {
-      console.error('Error during the payment request', error);
-    }
-  };
-
   return (
-    <>
-      <button onClick={handlePayment}>Proceed to Payment</button>
-    </>
+    <Router>
+      <Routes> {/* Use Routes instead of Switch */}
+        <Route path="/" element={<PaymentService />} /> {/* Use 'element' to render a component */}
+        <Route path="/success" element={<Success />} />
+        <Route path="/failed" element={<Failed />} />
+      </Routes>
+    </Router>
   );
 }
 

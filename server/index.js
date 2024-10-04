@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables
+
 const express = require("express");
 const paypal = require("paypal-rest-sdk");
 const cors = require("cors");
@@ -6,11 +8,9 @@ const app = express();
 app.use(cors());
 
 paypal.configure({
-  mode: "sandbox",
-  client_id:
-    "ATwB-U5nwdyqs22SMcoQrm68HBbRjYVLrhzmtiSuil_B989gbhAZOiTY7yhzlal7_9ZG7l-Vu4ugD6I0",
-  client_secret:
-    "EIsoXnZwBGC-zTzlLthsJk2aXNrxaxdAk910oiuJYxLirLkUKYN-Di6HCXbCY4kjiZE7VsOencovECHG",
+  mode: "sandbox", // or "live"
+  client_id: process.env.PAYPAL_CLIENT_ID,
+  client_secret: process.env.PAYPAL_CLIENT_SECRET,
 });
 
 // Route to test server connection
