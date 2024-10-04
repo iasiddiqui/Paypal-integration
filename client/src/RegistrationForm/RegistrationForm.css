@@ -1,0 +1,115 @@
+/* RegistrationForm.css */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  input[type="text"],
+  input[type="radio"],
+  button {
+    margin: 5px 0;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  h2, p {
+    text-align: center;
+  }
+  
+  h2 {
+    margin-top: 30px;
+  }
+  
+  h2.total {
+    margin-top: 20px;
+    color: #ffffff;
+  }
+  
+  input[type="radio"] + label {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  input[type="radio"]:checked + label {
+    color: #007bff;
+  }
+  
+  form > div {
+    margin-bottom: 20px;
+  }
+  
+  input[type="radio"] {
+    vertical-align: middle;
+  }
+  
+  /* Small screens */
+  @media (max-width: 600px) {
+    form {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    label {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    input[type="text"] {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  

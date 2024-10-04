@@ -6,12 +6,16 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
+app.use(express.json()); // Middleware to parse JSON request body
 
 paypal.configure({
-  mode: "sandbox",
+  mode: "sandbox", // or "live" for production
   client_id: process.env.PAYPAL_CLIENT_ID,
   client_secret: process.env.PAYPAL_CLIENT_SECRET,
 });
+
+// Store the total amount temporarily (in production, consider using sessions or a database)
+let lastTotal = null;
 
 // Route to test server connection
 app.get("/", (req, res) => {
@@ -21,6 +25,9 @@ app.get("/", (req, res) => {
 // Payment route (POST)
 app.post("/payment", async (req, res) => {
   try {
+    const { total } = req.body; // Get total amount from request body
+    lastTotal = total; // Store total amount
+
     let create_payment_json = {
       intent: "sale",
       payer: {
@@ -35,9 +42,9 @@ app.post("/payment", async (req, res) => {
           item_list: {
             items: [
               {
-                name: "item",
-                sku: "item",
-                price: "1.00",
+                name: "Registration Fee",
+                sku: "registration_fee",
+                price: total.toFixed(2), // Use the dynamic total amount
                 currency: "USD",
                 quantity: 1,
               },
@@ -45,9 +52,9 @@ app.post("/payment", async (req, res) => {
           },
           amount: {
             currency: "USD",
-            total: "1.00",
+            total: total.toFixed(2), // Use the dynamic total amount
           },
-          description: "This is the payment description.",
+          description: "This is the payment for registration.",
         },
       ],
     };
@@ -83,9 +90,9 @@ app.get("/success", async (req, res) => {
         {
           amount: {
             currency: "USD",
-            total: "1.00",
+            total: lastTotal ? lastTotal.toFixed(2) : "0.00", // Use stored total amount
           },
-          description: "This is the payment description.",
+          description: "Payment for registration successful.",
         },
       ],
     };

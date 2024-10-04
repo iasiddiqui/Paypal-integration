@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useLocation } from 'react-router-dom'; 
 
 function PaymentService() {
-  const navigate = useNavigate(); 
+  const location = useLocation(); 
+  const total = location.state?.total; // Get the total amount from the state
 
   const handlePayment = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:8000/payment');
+      const res = await axios.post('http://localhost:8000/payment', { total });
 
       if (res && res.data) {
         const approvalUrl = res.data.approvalUrl;
@@ -21,6 +22,7 @@ function PaymentService() {
 
   return (
     <>
+      <h2>Total Amount: ${total}</h2>
       <button onClick={handlePayment}>Proceed to Payment</button>
     </>
   );
